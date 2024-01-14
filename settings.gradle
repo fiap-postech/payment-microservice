@@ -31,3 +31,6 @@ include 'enterprise'
 
 include 'drivers:consumer'
 findProject(':drivers:consumer')?.name = 'consumer'
+
+include 'drivers:payment-gateway'
+findProject(':drivers:payment-gateway')?.name = 'payment-gateway'

@@ -20,8 +20,6 @@ dependencies {
 
     implementation sharedLibs.spring.data.commons
 
-//    testImplementation project(":drivers:rest")
-
     testImplementation sharedLibs.spring.boot.starter.test
     testImplementation sharedLibs.rest.assured
     testImplementation sharedLibs.json.schema.validator
@@ -34,10 +32,7 @@ dependencies {
 
     implementation project(":adapter")
     implementation project(":drivers:consumer")
-//    implementation project(":drivers:redis")
-//    implementation project(":drivers:customer-client")
-//    implementation project(":drivers:product-client")
-//    implementation project(":drivers:cart-producer")
+    implementation project(":drivers:payment-gateway")
 }
 
 scmVersion {
