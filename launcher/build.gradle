@@ -14,7 +14,6 @@ dependencies {
     implementation sharedLibs.spring.boot.starter.validation
     implementation sharedLibs.spring.boot.starter.logging
     implementation sharedLibs.spring.boot.starter.data.redis
-    implementation "io.awspring.cloud:spring-cloud-starter-aws-messaging:2.4.4"
 
     implementation sharedLibs.springdoc.openapi.starter.webmvc.ui
 
@@ -31,7 +30,7 @@ dependencies {
 
 
     implementation project(":adapter")
-    implementation project(":drivers:consumer")
+    implementation project(":drivers:cart-consumer")
     implementation project(":drivers:payment-gateway")
 }
 

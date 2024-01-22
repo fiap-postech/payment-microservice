@@ -1,11 +1,17 @@
-lserver:
-  port: 8690
+server:
+  port: 8691
 
 product.host: http://localhost:8688
 customer.host: http://localhost:8689
 
 aws:
-  region: us-east-1
   sqs:
     close-cart:
       name: local-payment-cart-closed-queue
+
+spring:
+  cloud:
+    aws:
+      endpoint: http://localhost:4566
+      region:
+        static: us-east-1

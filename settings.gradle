@@ -29,8 +29,8 @@ include 'adapter'
 
 include 'enterprise'
 
-include 'drivers:consumer'
-findProject(':drivers:consumer')?.name = 'consumer'
+include 'drivers:cart-consumer'
+findProject(':drivers:cart-consumer')?.name = 'cart-consumer'
 
 include 'drivers:payment-gateway'
 findProject(':drivers:payment-gateway')?.name = 'payment-gateway'

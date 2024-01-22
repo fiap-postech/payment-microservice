@@ -1,10 +1,8 @@
 package test.java.br.com.fiap.tech.challenge.customer.launcher.config;
 
-import br.com.fiap.tech.challenge.launcher.configuration.ControllerConfiguration;
 import br.com.fiap.tech.challenge.launcher.configuration.GatewayConfiguration;
 import br.com.fiap.tech.challenge.launcher.configuration.MainConfiguration;
 import br.com.fiap.tech.challenge.launcher.configuration.PresenterConfiguration;
-import br.com.fiap.tech.challenge.launcher.configuration.UseCaseConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
