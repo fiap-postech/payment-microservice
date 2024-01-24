@@ -1,15 +1,15 @@
 package br.com.fiap.tech.challenge.adapter.driven.payment.gateway.service;
 
+import br.com.fiap.tech.challenge.application.gateway.PaymentGateway;
 import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
 import br.com.fiap.tech.challenge.enterprise.enums.PaymentMethod;
-import br.com.fiap.tech.challenge.application.gateway.PaymentGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class PaymentGatewayImpl implements PaymentGateway {
 

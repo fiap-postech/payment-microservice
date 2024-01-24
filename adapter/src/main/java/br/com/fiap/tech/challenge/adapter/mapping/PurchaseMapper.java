@@ -26,6 +26,7 @@ public interface PurchaseMapper {
     @Mapping(target = "date", expression = "java(purchase.date())")
     @Mapping(target = "items", source = "purchase", qualifiedByName = "getPurchaseItems")
     @Mapping(target = "payment", source = "purchase", qualifiedByName = "getPaymentDTO")
+    @Mapping(target = "cartId", expression = "java(purchase.cartId())")
     PurchaseDTO toDTO(Purchase purchase);
 
     @Named("getCustomerDTO")

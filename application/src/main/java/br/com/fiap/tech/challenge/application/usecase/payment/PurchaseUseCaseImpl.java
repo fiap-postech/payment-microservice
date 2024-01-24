@@ -1,6 +1,7 @@
 package br.com.fiap.tech.challenge.application.usecase.payment;
 
 import br.com.fiap.tech.challenge.application.gateway.PaymentGateway;
+import br.com.fiap.tech.challenge.application.gateway.PaymentWriterGateway;
 import br.com.fiap.tech.challenge.enterprise.entity.Cart;
 import br.com.fiap.tech.challenge.enterprise.entity.Payment;
 import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
@@ -17,6 +18,7 @@ import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.PAYME
 public class PurchaseUseCaseImpl implements PurchaseUseCase {
 
     private final PaymentGateway paymentGateway;
+    private final PaymentWriterGateway paymentWriterGateway;
 
 
     @Override
@@ -27,7 +29,7 @@ public class PurchaseUseCaseImpl implements PurchaseUseCase {
         var urlPayment = doPayment(purchase);
         purchase.payment().setUrlPayment(urlPayment);
 
-        return purchase;
+        return paymentWriterGateway.write(purchase);
     }
 
     private String doPayment(Purchase purchase) {

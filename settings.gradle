@@ -32,5 +32,8 @@ include 'enterprise'
 include 'drivers:cart-consumer'
 findProject(':drivers:cart-consumer')?.name = 'cart-consumer'
 
+include 'drivers:mongodb'
+findProject(':drivers:mongodb')?.name = 'mongodb'
+
 include 'drivers:payment-gateway'
 findProject(':drivers:payment-gateway')?.name = 'payment-gateway'

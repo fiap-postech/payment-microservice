@@ -26,6 +26,8 @@ public class Purchase extends Entity {
 
     private final Customer customer;
 
+    private final String cartId;
+
     @NotNull
     private final PurchaseStatus status;
 
@@ -43,6 +45,7 @@ public class Purchase extends Entity {
     @Builder(toBuilder = true)
     public Purchase(@Builder.ObtainVia(method = "uuid") UUID uuid,
                     Customer customer,
+                    String cartId,
                     @NotNull PurchaseStatus status,
                     @NotNull LocalDate date,
                     @NotNull List<PurchaseItem> items,
@@ -50,6 +53,7 @@ public class Purchase extends Entity {
         super(uuid);
 
         this.customer = customer;
+        this.cartId = cartId;
         this.status = status;
         this.date = date;
         this.items = items;
@@ -108,6 +112,7 @@ public class Purchase extends Entity {
         return Purchase.builder()
                 .date(LocalDate.now())
                 .customer(cart.customer())
+                .cartId(cart.uuid().toString())
                 .status(PurchaseStatus.WAITING_PAID)
                 .items(
                         cart.items()

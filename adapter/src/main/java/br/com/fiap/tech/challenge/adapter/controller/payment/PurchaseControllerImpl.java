@@ -15,6 +15,8 @@ public class PurchaseControllerImpl implements PurchaseController {
     @Override
     public PurchaseDTO create(CartDTO cartDTO) {
         var purchase = purchaseUseCase.create(CartMapper.INSTANCE.toDomain(cartDTO));
-        return PurchaseMapper.INSTANCE.toDTO(purchase);
+        var purchaseDTO = PurchaseMapper.INSTANCE.toDTO(purchase);
+        purchaseDTO.setCartId(cartDTO.getId());
+        return purchaseDTO;
     }
 }
