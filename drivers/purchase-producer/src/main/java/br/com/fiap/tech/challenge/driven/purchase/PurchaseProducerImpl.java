@@ -22,11 +22,11 @@ public class PurchaseProducerImpl implements PurchaseProducer {
 
     @Override
     public void createdEvent(PurchaseDTO purchaseDTO) {
-        snsTemplate.send(requireNonNull(env.getProperty(CREATED_PAYMENT_SNS_NAME_KEY)), MessageBuilder.withPayload(purchaseDTO).build());
+        snsTemplate.convertAndSend(requireNonNull(env.getProperty(CREATED_PAYMENT_SNS_NAME_KEY)), purchaseDTO);
     }
 
     @Override
     public void doneEvent(PurchaseDTO purchaseDTO) {
-        snsTemplate.send(requireNonNull(env.getProperty(DONE_PAYMENT_SNS_NAME_KEY)), MessageBuilder.withPayload(purchaseDTO).build());
+        snsTemplate.convertAndSend(requireNonNull(env.getProperty(DONE_PAYMENT_SNS_NAME_KEY)), purchaseDTO);
     }
 }
