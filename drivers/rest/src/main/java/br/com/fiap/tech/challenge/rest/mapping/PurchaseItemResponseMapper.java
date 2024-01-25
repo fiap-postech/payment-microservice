@@ -1,10 +1,9 @@
-package br.com.fiap.tech.challenge.driven.consumer.mapping;
+package br.com.fiap.tech.challenge.rest.mapping;
 
 import br.com.fiap.tech.challenge.adapter.dto.ProductDTO;
 import br.com.fiap.tech.challenge.adapter.dto.PurchaseItemDTO;
-
-import br.com.fiap.tech.challenge.driven.consumer.resource.response.ProductResponse;
-import br.com.fiap.tech.challenge.driven.consumer.resource.response.PurchaseItemResponse;
+import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
+import br.com.fiap.tech.challenge.rest.resource.response.PurchaseItemResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

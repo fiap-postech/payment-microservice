@@ -24,6 +24,12 @@ public class PaymentWritterRepositoryImpl implements PaymentWritterRepository {
 
         paymentEntity.setPurchase(purchaseEntity);
 
+        var paymentEntityOpt = repository.findByUuid(paymentEntity.getUuid());
+
+        if(paymentEntityOpt.isPresent()){
+            repository.deleteByUuid(paymentEntity.getUuid());
+        }
+
         repository.save(paymentEntity);
 
         PurchaseDTO response = dbPurchaseMapper.toDTO(purchaseEntity);

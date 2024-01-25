@@ -29,8 +29,14 @@ include 'adapter'
 
 include 'enterprise'
 
+include 'drivers:rest'
+findProject(':drivers:rest')?.name = 'rest'
+
 include 'drivers:cart-consumer'
 findProject(':drivers:cart-consumer')?.name = 'cart-consumer'
+
+include 'drivers:purchase-producer'
+findProject(':drivers:purchase-producer')?.name = 'purchase-producer'
 
 include 'drivers:mongodb'
 findProject(':drivers:mongodb')?.name = 'mongodb'

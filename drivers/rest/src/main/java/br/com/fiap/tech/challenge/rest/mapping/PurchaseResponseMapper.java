@@ -1,7 +1,7 @@
-package br.com.fiap.tech.challenge.driven.consumer.mapping;
+package br.com.fiap.tech.challenge.rest.mapping;
 
 import br.com.fiap.tech.challenge.adapter.dto.PurchaseDTO;
-import br.com.fiap.tech.challenge.driven.consumer.resource.response.PurchseResponse;
+import br.com.fiap.tech.challenge.rest.resource.response.PurchseResponse;
 import org.mapstruct.Mapper;
 
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;

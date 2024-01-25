@@ -42,13 +42,15 @@ public class Payment extends Entity {
                    @NotNull LocalDate date,
                    @NotNull PaymentStatus status,
                    @NotNull PaymentMethod method,
-                   @NotNull Money amount) {
+                   @NotNull Money amount,
+                   String urlPayment) {
         super(uuid);
 
         this.date = date;
         this.status = status;
         this.method = method;
         this.amount = amount;
+        this.urlPayment = urlPayment;
 
         validate();
     }

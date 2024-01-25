@@ -8,7 +8,7 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 @Mapper(
         componentModel = SPRING,
-        uses = { CustomerResponseMapper.class, CartItemResponseMapper.class }
+        uses = { CustomerResultMapper.class, CartItemResponseMapper.class }
 )
 public interface CartResponseMapper {
 

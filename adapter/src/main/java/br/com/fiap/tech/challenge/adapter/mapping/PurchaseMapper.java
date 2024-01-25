@@ -4,6 +4,7 @@ import br.com.fiap.tech.challenge.adapter.dto.CustomerDTO;
 import br.com.fiap.tech.challenge.adapter.dto.PaymentDTO;
 import br.com.fiap.tech.challenge.adapter.dto.PurchaseDTO;
 import br.com.fiap.tech.challenge.adapter.dto.PurchaseItemDTO;
+import br.com.fiap.tech.challenge.enterprise.entity.Payment;
 import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -44,5 +45,10 @@ public interface PurchaseMapper {
     @Named("getPaymentDTO")
     static PaymentDTO getPaymentDTO(Purchase purchase) {
         return PaymentMapper.INSTANCE.toDTO(purchase.payment());
+    }
+
+    @Named("getPaymentValue")
+    static Payment getPaymentValue(PurchaseDTO purchaseDTO) {
+        return PaymentMapper.INSTANCE.toDomain(purchaseDTO.getPayment());
     }
 }

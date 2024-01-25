@@ -34,7 +34,9 @@ dependencies {
 
 
     implementation project(":adapter")
+    implementation project(":drivers:rest")
     implementation project(":drivers:cart-consumer")
+    implementation project(":drivers:purchase-producer")
     implementation project (":drivers:mongodb")
     implementation project(":drivers:payment-gateway")
 }

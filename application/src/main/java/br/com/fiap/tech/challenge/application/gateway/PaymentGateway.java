@@ -7,4 +7,6 @@ import java.util.Optional;
 public interface PaymentGateway {
 
     Optional<String> pay(Purchase purchase);
+
+    Optional<String> getPurchaseUUID(String paymentId);
 }

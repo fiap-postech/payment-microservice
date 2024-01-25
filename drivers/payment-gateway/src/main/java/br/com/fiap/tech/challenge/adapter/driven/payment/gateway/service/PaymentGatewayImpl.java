@@ -21,6 +21,11 @@ public class PaymentGatewayImpl implements PaymentGateway {
         return current(payment.method()).pay(purchase);
     }
 
+    @Override
+    public Optional<String> getPurchaseUUID(String paymentId) {
+        return current(PaymentMethod.PAID_MARKET).getPurchaseUUID(paymentId);
+    }
+
     private br.com.fiap.tech.challenge.adapter.driven.payment.gateway.service.PaymentGateway current(PaymentMethod method) {
         return factory.getBeanProvider(br.com.fiap.tech.challenge.adapter.driven.payment.gateway.service.PaymentGateway.class)
                 .stream()

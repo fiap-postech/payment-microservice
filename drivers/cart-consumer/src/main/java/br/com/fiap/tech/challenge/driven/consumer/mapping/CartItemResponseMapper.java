@@ -15,7 +15,7 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 public abstract class CartItemResponseMapper {
 
     @Autowired
-    private ProductResponseMapper productResponseMapper;
+    private ProductResponseConsumerMapper productResponseConsumerMapper;
 
     @Mapping(target = "product", source = "product", qualifiedByName = "getProductResponse")
     abstract CartItemResponse toCartItemResponse(CartItemDTO source);
@@ -23,7 +23,7 @@ public abstract class CartItemResponseMapper {
 
     @Named("getProductResponse")
     ProductResponse getProductResponse(ProductDTO dto) {
-        return productResponseMapper.toResponse(dto);
+        return productResponseConsumerMapper.toResponse(dto);
     }
 
 }
