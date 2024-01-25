@@ -1,4 +1,4 @@
-package test.java.br.com.fiap.tech.challenge.customer.launcher.fixture;
+package br.com.fiap.tech.challenge.payment.launcher.fixture;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package test.java.br.com.fiap.tech.challenge.customer.launcher.util;
+package br.com.fiap.tech.challenge.payment.launcher.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

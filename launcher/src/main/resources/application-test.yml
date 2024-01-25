@@ -1,11 +1,28 @@
 server:
-  port: 8690
+  port: 8691
 
 product.host: http://localhost:8688
 customer.host: http://localhost:8689
 
 aws:
-  region: us-east-1
-  sns:
+  sqs:
     close-cart:
-      name: local-cart-closed-topic
+      name: local-payment-cart-closed-queue
+
+  sns:
+    created-payment:
+      name: local-payment-created-topic
+    done-payment:
+      name: local-payment-done-topic
+
+spring:
+  cloud:
+    aws:
+      endpoint: http://localhost:4566
+      region:
+        static: us-east-1
+
+  data:
+    mongodb:
+      uri: mongodb://root:admin@localhost:27017
+      database: paymentdb

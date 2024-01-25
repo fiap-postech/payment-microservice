@@ -1,4 +1,4 @@
-package test.java.br.com.fiap.tech.challenge.customer.launcher.containers;
+package br.com.fiap.tech.challenge.payment.launcher.containers;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
