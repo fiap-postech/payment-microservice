@@ -1,0 +1,13 @@
+plugins {
+    id 'java-library'
+}
+
+version '1.0.0'
+
+dependencies {
+
+    implementation 'org.springframework.data:spring-data-mongodb:4.2.2'
+
+    compileOnly project(":adapter")
+    compileOnly project(":application")
+}
