@@ -11,7 +11,7 @@ aws:
 
   sns:
     created-payment:
-      name: local-purcharse-created-topic
+      name: local-payment-created-topic
     done-payment:
       name: local-payment-done-topic
 

@@ -5,6 +5,7 @@ import br.com.fiap.tech.challenge.adapter.producer.PurchaseProducer;
 import io.awspring.cloud.sns.core.SnsTemplate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.env.Environment;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 import static java.util.Objects.requireNonNull;
@@ -21,11 +22,11 @@ public class PurchaseProducerImpl implements PurchaseProducer {
 
     @Override
     public void createdEvent(PurchaseDTO purchaseDTO) {
-        snsTemplate.convertAndSend(requireNonNull(env.getProperty(CREATED_PAYMENT_SNS_NAME_KEY)), purchaseDTO);
+        snsTemplate.send(requireNonNull(env.getProperty(CREATED_PAYMENT_SNS_NAME_KEY)), MessageBuilder.withPayload(purchaseDTO).build());
     }
 
     @Override
     public void doneEvent(PurchaseDTO purchaseDTO) {
-        snsTemplate.convertAndSend(requireNonNull(env.getProperty(DONE_PAYMENT_SNS_NAME_KEY)), purchaseDTO);
+        snsTemplate.send(requireNonNull(env.getProperty(DONE_PAYMENT_SNS_NAME_KEY)), MessageBuilder.withPayload(purchaseDTO).build());
     }
 }

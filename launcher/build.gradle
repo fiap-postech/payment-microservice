@@ -30,6 +30,7 @@ dependencies {
     testImplementation sharedLibs.instancio.core
     testImplementation sharedLibs.testcontainers.junit.jupiter
     testImplementation 'org.testcontainers:mockserver:1.19.3'
+    testImplementation "org.testcontainers:mongodb:1.19.4"
     testImplementation 'org.mock-server:mockserver-client-java:5.15.0'
 
 

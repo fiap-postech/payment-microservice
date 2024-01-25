@@ -1,7 +1,7 @@
-package test.java.br.com.fiap.tech.challenge.customer.launcher.fixture;
+package br.com.fiap.tech.challenge.payment.launcher.fixture;
 
-import br.com.fiap.tech.challenge.driven.product.response.ProductResponse;
 import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
+import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.instancio.Instancio;

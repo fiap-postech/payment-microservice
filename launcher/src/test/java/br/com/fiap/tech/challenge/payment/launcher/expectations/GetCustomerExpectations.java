@@ -1,4 +1,4 @@
-package test.java.br.com.fiap.tech.challenge.customer.launcher.expectations;
+package br.com.fiap.tech.challenge.payment.launcher.expectations;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -8,15 +8,15 @@ import org.mockserver.model.HttpRequest;
 import org.mockserver.model.HttpResponse;
 import org.mockserver.model.JsonBody;
 
-import static br.com.fiap.tech.challenge.customer.launcher.fixture.Fixture.create;
-import static br.com.fiap.tech.challenge.customer.launcher.util.JsonUtil.asJsonString;
+import static br.com.fiap.tech.challenge.payment.launcher.util.JsonUtil.asJsonString;
+import static org.instancio.Instancio.create;
 import static org.mockserver.model.HttpRequest.request;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class GetProductExpectations {
-    public static <O> HttpRequest getProductSuccessExpectation(MockServerClient client, String id, Model<O> output) {
+public class GetCustomerExpectations {
+    public static <O> HttpRequest getCustomerSuccessExpectation(MockServerClient client, String id, Model<O> output) {
         var request = request()
-                .withPath(String.format("/product/%s", id))
+                .withPath(String.format("/customer/%s", id))
                 .withMethod("GET");
 
         var response = HttpResponse.response()
