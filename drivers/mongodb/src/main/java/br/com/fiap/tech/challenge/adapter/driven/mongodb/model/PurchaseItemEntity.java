@@ -20,8 +20,4 @@ public class PurchaseItemEntity {
     private BigDecimal price;
 
     private BigDecimal discount;
-
-    public BigDecimal getFullPrice() {
-        return getPrice().add(getDiscount());
-    }
 }

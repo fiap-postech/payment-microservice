@@ -50,18 +50,6 @@ public class PurchaseItem extends ValueObject {
         validate();
     }
 
-    public Price subTotal() {
-        return product().fullPrice().multiply(quantity());
-    }
-
-    public Discount totalDiscount() {
-        return product().discount().multiply(quantity());
-    }
-
-    public Price total() {
-        return product().price().multiply(quantity());
-    }
-
     public static PurchaseItem of(CartItem item) {
         return PurchaseItem.builder()
                 .discount(item.product().discount())
