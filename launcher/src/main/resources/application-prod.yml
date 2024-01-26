@@ -18,3 +18,10 @@ spring:
     mongodb:
       database: paymentdb
       port: 27017
+
+payment-service:
+  configuration:
+    s3:
+      mongo-ssl:
+        bucket: # defined-at-task-definition
+        file: global-bundle.pem
