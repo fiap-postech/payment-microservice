@@ -1,9 +1,21 @@
-spring.data.redis:
-  host: redis
-  port: 6379
-
 aws:
-  region: us-east-1
-  sns:
+  sqs:
     close-cart:
-      name: prd-cart-closed-topic
+      name: prd-payment-cart-closed-queue
+
+  sns:
+    created-payment:
+      name: prd-payment-created-topic
+    done-payment:
+      name: prd-payment-done-topic
+
+spring:
+  cloud:
+    aws:
+      region:
+        static: us-east-1
+  data:
+    mongodb:
+      uri: #defined at task definition
+      database: paymentdb
+      port: 27017

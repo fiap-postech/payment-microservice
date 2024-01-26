@@ -1,9 +1,6 @@
 server:
   port: 8691
 
-product.host: http://localhost:8688
-customer.host: http://localhost:8689
-
 aws:
   sqs:
     close-cart:
