@@ -24,11 +24,6 @@ public class PurchaseEntity {
 
     private List<PurchaseItemEntity> items = new ArrayList<>();
 
-    public void addItem(PurchaseItemEntity item) {
-        item.setPurchase(this);
-        getItems().add(item);
-    }
-
     public void setItems(List<PurchaseItemEntity> items) {
         this.items = items;
         this.items.forEach(i -> i.setPurchase(this));

@@ -1,8 +1,7 @@
 server:
   port: 8691
 
-product.host: http://localhost:8688
-customer.host: http://localhost:8689
+mercado-pago.host: http://localhost:8788
 
 aws:
   sqs:
