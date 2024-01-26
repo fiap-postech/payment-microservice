@@ -16,6 +16,5 @@ spring:
         static: us-east-1
   data:
     mongodb:
-      uri: #defined at task definition
       database: paymentdb
       port: 27017
