@@ -3,6 +3,8 @@ package br.com.fiap.tech.challenge.adapter.driven.mongodb.config;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -13,11 +15,13 @@ import static br.com.fiap.tech.challenge.adapter.driven.mongodb.config.Environme
 import static br.com.fiap.tech.challenge.adapter.driven.mongodb.config.EnvironmentProperties.DATABASE_PASSWORD;
 import static br.com.fiap.tech.challenge.adapter.driven.mongodb.config.EnvironmentProperties.DATABASE_PORT;
 import static br.com.fiap.tech.challenge.adapter.driven.mongodb.config.EnvironmentProperties.DATABASE_USERNAME;
+import static org.slf4j.LoggerFactory.getLogger;
 
 @Profile({"dev", "hml", "prod"})
 @Configuration
-@RequiredArgsConstructor
 public class DocumentDBConfiguration extends AbstractMongoClientConfiguration {
+
+    private static final Logger LOGGER = getLogger(DocumentDBConfiguration.class);
 
     private static final String CONNECTION_STRING_TEMPLATE = "mongodb://%s:%s@%s:%s/%s?directConnection=true&serverSelectionTimeoutMS=2000&tlsAllowInvalidHostnames=true&tls=true&retryWrites=false";
 
@@ -36,7 +40,8 @@ public class DocumentDBConfiguration extends AbstractMongoClientConfiguration {
     @Value("${" + DATABASE_PASSWORD + "}")
     private String databasePassword;
 
-    private final SSLLoader sslLoader;
+    @Autowired
+    private SSLLoader sslLoader;
 
     @Override
     protected String getDatabaseName() {
@@ -45,6 +50,8 @@ public class DocumentDBConfiguration extends AbstractMongoClientConfiguration {
 
     @Override
     protected void configureClientSettings(MongoClientSettings.Builder builder) {
+        LOGGER.info("DocumentDBConfiguration.configureClientSettings start");
+
         super.configureClientSettings(builder);
 
         builder.applyConnectionString(new ConnectionString(getConnectionString()));
