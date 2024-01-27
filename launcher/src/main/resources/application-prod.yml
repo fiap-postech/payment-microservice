@@ -16,6 +16,12 @@ spring:
         static: us-east-1
   data:
     mongodb:
-      uri: #defined at task definition
       database: paymentdb
       port: 27017
+
+payment-service:
+  configuration:
+    s3:
+      mongo-ssl:
+        bucket: # defined-at-task-definition
+        file: global-bundle.pem

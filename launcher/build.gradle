@@ -13,7 +13,6 @@ dependencies {
     implementation sharedLibs.spring.boot.starter.actuator
     implementation sharedLibs.spring.boot.starter.validation
     implementation sharedLibs.spring.boot.starter.logging
-    implementation sharedLibs.spring.boot.starter.data.redis
 
     implementation sharedLibs.springdoc.openapi.starter.webmvc.ui
     implementation 'org.springframework.data:spring-data-mongodb:4.2.2'
