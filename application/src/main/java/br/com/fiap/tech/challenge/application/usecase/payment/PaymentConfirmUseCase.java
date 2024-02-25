@@ -1,10 +1,10 @@
 package br.com.fiap.tech.challenge.application.usecase.payment;
 
 import br.com.fiap.tech.challenge.application.dto.PaymentConfirmDTO;
-import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
+import br.com.fiap.tech.challenge.enterprise.entity.Payment;
 
 public interface PaymentConfirmUseCase {
 
-    Purchase confirm(PaymentConfirmDTO dto);
+    Payment confirm(PaymentConfirmDTO dto);
 
 }

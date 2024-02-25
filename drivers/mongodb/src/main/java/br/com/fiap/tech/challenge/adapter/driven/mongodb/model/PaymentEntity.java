@@ -15,13 +15,15 @@ public class PaymentEntity {
 
     private String uuid;
 
-    private PurchaseEntity purchase;
+    private LocalDate date;
+
+    private String purchaseId;
+
+    private PaymentStatus status;
 
     private String method;
 
-    private LocalDate date;
-
-    private PaymentStatus status;
+    private String paymentUrl;
 
     private BigDecimal amount;
 }

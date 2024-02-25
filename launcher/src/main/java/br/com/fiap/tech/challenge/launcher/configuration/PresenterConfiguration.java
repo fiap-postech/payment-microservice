@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class PresenterConfiguration {
 
     @Bean
-    public PurchasePresenter purchasePresenter() {
+    public PaymentPresenter purchasePresenter() {
         return PresenterFactory.purchasePresenter();
     }
 

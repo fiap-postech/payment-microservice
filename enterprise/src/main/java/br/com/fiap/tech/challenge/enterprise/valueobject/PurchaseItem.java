@@ -1,8 +1,6 @@
 package br.com.fiap.tech.challenge.enterprise.valueobject;
 
-import br.com.fiap.tech.challenge.enterprise.entity.CartItem;
-import br.com.fiap.tech.challenge.enterprise.entity.Product;
-import jakarta.validation.Valid;
+import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -19,44 +17,42 @@ public class PurchaseItem extends ValueObject {
     private static final long serialVersionUID = -2071891141308689952L;
 
     @NotNull
-    @Valid
-    private final Product product;
+    private String id;
 
     @NotNull
-    @Valid
-    private final Quantity quantity;
+    private String title;
 
     @NotNull
-    private final Price fullPrice;
+    private String description;
 
     @NotNull
-    private final Price price;
+    private ProductCategory categoryId;
 
     @NotNull
-    private final Discount discount;
+    private Integer quantity;
+
+    @NotNull
+    private String currencyId;
+
+    @NotNull
+    private String unitPrice;
 
     @Builder(toBuilder = true)
-    public PurchaseItem(@NotNull Product product,
-                        @NotNull Quantity quantity,
-                        @NotNull Price fullPrice,
-                        @NotNull Price price,
-                        @NotNull Discount discount) {
-        this.product = product;
+    public PurchaseItem(@NotNull String id,
+                        @NotNull String title,
+                        @NotNull String description,
+                        @NotNull ProductCategory categoryId,
+                        @NotNull Integer quantity,
+                        @NotNull String currencyId,
+                        @NotNull String unitPrice) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.categoryId = categoryId;
         this.quantity = quantity;
-        this.fullPrice = fullPrice;
-        this.price = price;
-        this.discount = discount;
+        this.currencyId = currencyId;
+        this.unitPrice = unitPrice;
 
         validate();
-    }
-
-    public static PurchaseItem of(CartItem item) {
-        return PurchaseItem.builder()
-                .discount(item.product().discount())
-                .fullPrice(item.product().fullPrice())
-                .price(item.product().price())
-                .quantity(item.quantity())
-                .product(item.product())
-                .build();
     }
 }

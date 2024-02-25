@@ -26,12 +26,15 @@ public class Payment extends Entity {
     private final LocalDate date;
 
     @NotNull
+    private final String purchaseId;
+
+    @NotNull
     private final PaymentStatus status;
 
     @NotNull
     private final PaymentMethod method;
 
-    private String urlPayment;
+    private String paymentUrl;
 
     @NotNull
     @Positive
@@ -40,17 +43,19 @@ public class Payment extends Entity {
     @Builder(toBuilder = true)
     public Payment(@Builder.ObtainVia(method = "uuid") UUID uuid,
                    @NotNull LocalDate date,
+                   @NotNull String purchaseId,
                    @NotNull PaymentStatus status,
                    @NotNull PaymentMethod method,
                    @NotNull Money amount,
-                   String urlPayment) {
+                   String paymentUrl) {
         super(uuid);
 
         this.date = date;
+        this.purchaseId = purchaseId;
         this.status = status;
         this.method = method;
         this.amount = amount;
-        this.urlPayment = urlPayment;
+        this.paymentUrl = paymentUrl;
 
         validate();
     }
@@ -73,9 +78,5 @@ public class Payment extends Entity {
         return toBuilder()
                 .status(PaymentStatus.ERROR)
                 .build();
-    }
-
-    public void setUrlPayment(String urlPayment) {
-        this.urlPayment = urlPayment;
     }
 }

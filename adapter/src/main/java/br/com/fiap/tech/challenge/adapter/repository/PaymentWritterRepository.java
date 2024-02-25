@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.adapter.repository;
 
-import br.com.fiap.tech.challenge.adapter.dto.PurchaseDTO;
+import br.com.fiap.tech.challenge.adapter.dto.PaymentDTO;
 
 public interface PaymentWritterRepository {
-    PurchaseDTO write (PurchaseDTO dto);
+    PaymentDTO write (PaymentDTO dto);
 }
