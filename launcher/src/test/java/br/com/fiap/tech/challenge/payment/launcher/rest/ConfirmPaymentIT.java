@@ -68,6 +68,6 @@ public class ConfirmPaymentIT {
                 .post("/payment/confirm")
             .then()
                 .statusCode(HttpStatus.OK.value())
-                .body(matchesJsonSchemaInClasspath("./schemas/PurchaseResponseSchema.json"));
+                .body(matchesJsonSchemaInClasspath("schemas/PaymentResponseSchema.json"));
     }
 }
