@@ -16,8 +16,9 @@ public class PaymentDTO implements Serializable {
 
     private String id;
     private LocalDate date;
+    private String purchaseId;
     private PaymentStatus status;
     private PaymentMethod method;
-    private String urlPayment;
+    private String paymentUrl;
     private BigDecimal amount;
 }

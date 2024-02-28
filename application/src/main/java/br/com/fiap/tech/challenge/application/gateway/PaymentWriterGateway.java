@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.application.gateway;
 
-import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
+import br.com.fiap.tech.challenge.enterprise.entity.Payment;
 
 public interface PaymentWriterGateway {
-    Purchase write(Purchase purchase);
+    Payment write(Payment payment);
 }

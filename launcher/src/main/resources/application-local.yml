@@ -3,8 +3,8 @@ server:
 
 aws:
   sqs:
-    close-cart:
-      name: local-payment-cart-closed-queue
+    purchase-create:
+      name: local-payment-purchase-created-queue
 
   sns:
     created-payment:

@@ -5,7 +5,7 @@ mercado-pago.host: http://localhost:8788
 
 aws:
   sqs:
-    close-cart:
+    purchase-create:
       name: local-payment-cart-closed-queue
 
   sns:

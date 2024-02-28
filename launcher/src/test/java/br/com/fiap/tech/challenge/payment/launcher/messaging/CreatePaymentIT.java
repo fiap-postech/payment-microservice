@@ -1,9 +1,9 @@
 package br.com.fiap.tech.challenge.payment.launcher.messaging;
 
 import br.com.fiap.tech.challenge.adapter.driven.mongodb.repository.PaymentRepository;
-import br.com.fiap.tech.challenge.adapter.dto.CartDTO;
+import br.com.fiap.tech.challenge.adapter.dto.PurchaseDTO;
 import br.com.fiap.tech.challenge.payment.launcher.config.TestConfiguration;
-import br.com.fiap.tech.challenge.payment.launcher.fixture.input.CartDTOFixture;
+import br.com.fiap.tech.challenge.payment.launcher.fixture.input.PurchaseDTOFixture;
 import io.awspring.cloud.sqs.operations.SqsTemplate;
 import org.instancio.Model;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -27,7 +27,7 @@ import static br.com.fiap.tech.challenge.payment.launcher.containers.LocalStackC
 import static br.com.fiap.tech.challenge.payment.launcher.containers.MongoDbContainers.localMongoDbContainer;
 import static br.com.fiap.tech.challenge.payment.launcher.fixture.Fixture.create;
 import static br.com.fiap.tech.challenge.payment.launcher.util.ConfigurationOverrides.overrideConfiguration;
-import static br.com.fiap.tech.challenge.payment.launcher.util.PaymentUtil.getPaymentCartCloseQueueName;
+import static br.com.fiap.tech.challenge.payment.launcher.util.PaymentUtil.getPaymentPurchaseCreateQueueName;
 import static br.com.fiap.tech.challenge.payment.launcher.util.QueueUtil.sendMessage;
 import static org.awaitility.Awaitility.given;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -42,7 +42,7 @@ import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER
 @DirtiesContext(classMode = AFTER_CLASS)
 public class CreatePaymentIT {
 
-    private static final String PAYMENT_CREATED_QUEUE = "local-payment-created-queue";
+    private static final String PAYMENT_CREATED_QUEUE = "local-purchase-payment-created-queue";
 
     @Container
     protected static final MongoDBContainer DATABASE = localMongoDbContainer();
@@ -66,10 +66,10 @@ public class CreatePaymentIT {
 
     @ParameterizedTest
     @MethodSource("getCreateOptions")
-    void testCreatePayment(Model<CartDTO> model) {
+    void testCreatePayment(Model<PurchaseDTO> model) {
         var message = create(model);
 
-        sendMessage(sqsTemplate, getPaymentCartCloseQueueName(env), message);
+        sendMessage(sqsTemplate, getPaymentPurchaseCreateQueueName(env), message);
 
         given()
                 .await()
@@ -77,7 +77,7 @@ public class CreatePaymentIT {
                 .atMost(Duration.ofSeconds(20))
                 .ignoreExceptions()
                 .untilAsserted(() -> {
-                    var paymentCreatedOpt = repository.findByCartUUID(message.getId());
+                    var paymentCreatedOpt = repository.findByPurchaseId(message.getId());
                     assertTrue(paymentCreatedOpt.isPresent());
 
                     var messageProducerOpt = sqsTemplate.receive(PAYMENT_CREATED_QUEUE, String.class);
@@ -88,9 +88,9 @@ public class CreatePaymentIT {
                 });
     }
 
-    static Stream<Model<CartDTO>> getCreateOptions() {
+    static Stream<Model<PurchaseDTO>> getCreateOptions() {
         return Stream.of(
-                CartDTOFixture.cartDTO()
+                PurchaseDTOFixture.singleSandwichPurchaseDTO()
         );
     }
 

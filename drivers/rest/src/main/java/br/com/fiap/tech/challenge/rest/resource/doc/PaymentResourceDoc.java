@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.rest.resource.doc;
 
 import br.com.fiap.tech.challenge.rest.resource.request.PaymentConfirmRequest;
-import br.com.fiap.tech.challenge.rest.resource.response.PurchseResponse;
+import br.com.fiap.tech.challenge.rest.resource.response.PaymentResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,5 +17,5 @@ public interface PaymentResourceDoc {
                     @ApiResponse(responseCode = "200", description = "OK - Retorna a visão do pedido com um objeto de pagamento atualizado.", useReturnTypeSchema = true)
             }
     )
-    PurchseResponse confirmPaymentForPurchase(@RequestBody PaymentConfirmRequest confirmRequest);
+    PaymentResponse confirmPaymentForPurchase(@RequestBody PaymentConfirmRequest confirmRequest);
 }

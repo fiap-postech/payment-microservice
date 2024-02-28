@@ -19,11 +19,11 @@ public class PaymentDTOFixture {
         return Instancio.of(PaymentDTO.class)
                 .set(field(PaymentDTO::getMethod), PaymentMethod.PAID_MARKET)
                 .set(field(PaymentDTO::getStatus), PaymentStatus.CREATED)
-                .set(field(PaymentDTO::getUrlPayment), "http://paga.eu/12345")
+                .set(field(PaymentDTO::getPaymentUrl), "http://paga.eu/12345")
+                .generate(field(PaymentDTO::getPurchaseId), gen -> gen.text().uuid())
                 .generate(field(PaymentDTO::getId), gen -> gen.text().uuid())
                 .generate(field(PaymentDTO::getDate), gen -> gen.temporal().localDate())
                 .generate(field(PaymentDTO::getAmount), gen -> gen.math().bigDecimal().min(BigDecimal.valueOf(20.00)))
                 .toModel();
     }
-
 }

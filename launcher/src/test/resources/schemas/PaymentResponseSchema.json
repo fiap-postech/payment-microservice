@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "purchaseId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PAID","WAITING_PAID"]
+    },
+    "method": {
+      "type": "string",
+      "enum": ["PAID_MARKET"]
+    },
+    "paymentUrl": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "id",
+    "purchaseId",
+    "status",
+    "paymentUrl"
+  ]
+}
