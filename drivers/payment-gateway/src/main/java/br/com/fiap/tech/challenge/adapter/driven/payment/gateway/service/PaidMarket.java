@@ -10,10 +10,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.function.Function;
 
-import static br.com.fiap.tech.challenge.util.Mappings.priceToBigDecimalConverter;
+import static java.lang.Double.parseDouble;
 import static java.util.Objects.requireNonNull;
 
 @Service
@@ -47,9 +48,9 @@ public class PaidMarket implements PaymentGateway {
     }
 
     @Override
-    public Optional<String> getPurchaseUUID(String paymentId) {
+    public Optional<String> getPurchaseUUID(String marketPaymentId) {
         try {
-            var response = current().getPayment(TOKEN, paymentId);
+            var response = current().getPayment(TOKEN, marketPaymentId);
 
             if (response.getStatusCode().is2xxSuccessful()) {
                 return Optional.of(requireNonNull(response.getBody()).getAdditionalInfo().purchaseId());
@@ -62,18 +63,15 @@ public class PaidMarket implements PaymentGateway {
     }
 
     private static Function<PurchaseItem, CheckoutItem> buildCheckoutItems(String id) {
-        return purchaseItem -> {
-            var product = purchaseItem.product();
-            return CheckoutItem.builder()
-                    .id(id + "_" + product.uuid().toString())
-                    .title(product.name())
-                    .description(product.description())
-                    .picture_url(product.image().url())
-                    .category_id(product.category().name())
-                    .quantity(purchaseItem.quantity().value())
-                    .currency_id("BRL")
-                    .unit_price(priceToBigDecimalConverter(purchaseItem.price())).build();
-        };
+        return purchaseItem -> CheckoutItem.builder()
+                .id(id + "_" + purchaseItem.id())
+                .title(purchaseItem.title())
+                .description(purchaseItem.description())
+                .picture_url("https://i.imgur.com/KvvHfza.jpeg")
+                .category_id(purchaseItem.categoryId().name())
+                .quantity(purchaseItem.quantity())
+                .currency_id(purchaseItem.currencyId())
+                .unit_price(BigDecimal.valueOf(parseDouble(purchaseItem.unitPrice()))).build();
     }
 
     private MarketPaymentClient current() {

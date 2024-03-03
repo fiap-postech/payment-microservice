@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.launcher.configuration;
 
-import br.com.fiap.tech.challenge.application.gateway.PaymentGateway;
+import br.com.fiap.tech.challenge.application.gateway.MarketPaymentGateway;
 import br.com.fiap.tech.challenge.application.gateway.PaymentReaderGateway;
 import br.com.fiap.tech.challenge.application.gateway.PaymentWriterGateway;
 import br.com.fiap.tech.challenge.application.usecase.payment.*;
@@ -11,22 +11,22 @@ import org.springframework.context.annotation.Configuration;
 public class UseCaseConfiguration {
 
     @Bean
-    public PurchaseUseCase createPurchaseUseCase(PaymentGateway paymentGateway, PaymentWriterGateway paymentWriterGateway) {
-        return PurchaseUseCaseFactory.createPurchaseUseCase(paymentGateway, paymentWriterGateway);
+    public PaymentUseCase createPurchaseUseCase(MarketPaymentGateway marketPaymentGateway, PaymentWriterGateway paymentWriterGateway) {
+        return PurchaseUseCaseFactory.createPurchaseUseCase(marketPaymentGateway, paymentWriterGateway);
     }
 
     @Bean
-    public UpdatePurchaseStatusUseCase updatePurchaseUseCase(PaymentWriterGateway gateway) {
+    public UpdatePaymentStatusUseCase updatePurchaseUseCase(PaymentWriterGateway gateway) {
         return PurchaseUseCaseFactory.updatePurchaseUseCase(gateway);
     }
 
     @Bean
-    public FindPurchaseByPaymentIdUseCase findPurchaseByPaymentIdUseCase(PaymentGateway paymentGateway, PaymentReaderGateway paymentReaderGateway) {
-        return PurchaseUseCaseFactory.findPurchaseByPaymentIdUseCase(paymentGateway, paymentReaderGateway);
+    public FindPaymentByMarketPaymentIdUseCase findPurchaseByPaymentIdUseCase(PaymentReaderGateway paymentReaderGateway, MarketPaymentGateway marketPaymentGateway) {
+        return PurchaseUseCaseFactory.findPurchaseByPaymentIdUseCase(paymentReaderGateway, marketPaymentGateway);
     }
 
     @Bean
-    public PaymentConfirmUseCase paymentConfirmUseCase(FindPurchaseByPaymentIdUseCase findPurchaseUseCase, UpdatePurchaseStatusUseCase updatePurchaseStatusUseCase) {
-        return PurchaseUseCaseFactory.paymentConfirmUseCase(findPurchaseUseCase, updatePurchaseStatusUseCase);
+    public PaymentConfirmUseCase paymentConfirmUseCase(FindPaymentByMarketPaymentIdUseCase findPurchaseUseCase, UpdatePaymentStatusUseCase updatePaymentStatusUseCase) {
+        return PurchaseUseCaseFactory.paymentConfirmUseCase(findPurchaseUseCase, updatePaymentStatusUseCase);
     }
 }

@@ -1,68 +1,25 @@
 package br.com.fiap.tech.challenge.adapter.mapping;
 
-import br.com.fiap.tech.challenge.adapter.dto.ProductDTO;
 import br.com.fiap.tech.challenge.adapter.dto.PurchaseItemDTO;
-import br.com.fiap.tech.challenge.adapter.mapping.util.ProductMappers;
-import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.enterprise.valueobject.PurchaseItem;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
-
-import java.math.BigDecimal;
-
-import static br.com.fiap.tech.challenge.util.Mappings.*;
 
 @Mapper(uses = { CommonMapper.class })
 public interface PurchaseItemMapper {
 
     PurchaseItemMapper INSTANCE = Mappers.getMapper(PurchaseItemMapper.class);
 
-    @Mapping(target = "product", source = "item", qualifiedByName = "mapToProductDTO")
-    @Mapping(target = "price", source = "item", qualifiedByName = "mapPrice")
-    @Mapping(target = "fullPrice", source = "item", qualifiedByName = "mapFullPrice")
-    @Mapping(target = "discount", source = "item", qualifiedByName = "mapDiscount")
-    @Mapping(target = "quantity", source = "item", qualifiedByName = "mapQuantity")
+    @Mapping(target = "id", expression = "java(item.id())")
+    @Mapping(target = "title", expression = "java(item.title())")
+    @Mapping(target = "description", expression = "java(item.description())")
+    @Mapping(target = "categoryId", expression = "java(item.categoryId())")
+    @Mapping(target = "quantity", expression = "java(item.quantity())")
+    @Mapping(target = "currencyId", expression = "java(item.currencyId())")
+    @Mapping(target = "unitPrice", expression = "java(item.unitPrice())")
     PurchaseItemDTO toDTO(PurchaseItem item);
 
-    @Mapping(target = "product", source = "product", qualifiedByName = "mapToProductDomain")
-    @Mapping(target = "price", source = "price", qualifiedByName = "getPrice")
-    @Mapping(target = "fullPrice", source = "fullPrice", qualifiedByName = "getPrice")
-    @Mapping(target = "discount", source = "discount", qualifiedByName = "getDiscount")
-    @Mapping(target = "quantity", source = "quantity", qualifiedByName = "getQuantityVO")
     PurchaseItem toDomain(PurchaseItemDTO dto);
-
-    @Named("mapToProductDomain")
-    static Product mapToProductDomain(ProductDTO dto) {
-        return ProductMappers.toProductDomain(dto);
-    }
-
-    @Named("mapToProductDTO")
-    static ProductDTO mapToProductDTO(PurchaseItem item){
-        return ProductMappers.toProductDTO(item.product());
-    }
-
-    @Named("mapFullPrice")
-    static BigDecimal mapFullPrice(PurchaseItem item) {
-        return priceToBigDecimalConverter(item.fullPrice());
-    }
-
-    @Named("mapPrice")
-    static BigDecimal mapPrice(PurchaseItem item) {
-        return priceToBigDecimalConverter(item.price());
-    }
-
-    @Named("mapQuantity")
-    static Integer mapQuantity(PurchaseItem item) {
-        return quantityToIntegerConverter(item.quantity());
-    }
-
-    @Named("mapDiscount")
-    static BigDecimal mapDiscount(PurchaseItem item) {
-        return discountToBigDecimalConverter(item.discount());
-    }
-
-
 
 }

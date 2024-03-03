@@ -1,7 +1,7 @@
 aws:
   sqs:
-    close-cart:
-      name: prd-payment-cart-closed-queue
+    purchase-create:
+      name: prd-payment-purchase-created-queue
 
   sns:
     created-payment:
