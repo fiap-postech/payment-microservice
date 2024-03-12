@@ -12,4 +12,6 @@ public class PaymentConfirmResponse {
 
     @JsonProperty("additional_info")
     private PaymentConfirmAdditionalInfo additionalInfo;
+
+    private String status;
 }

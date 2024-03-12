@@ -1,5 +1,6 @@
 package br.com.fiap.tech.challenge.adapter.driven.payment.gateway.service;
 
+import br.com.fiap.tech.challenge.application.dto.MarketPaymentDTO;
 import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
 import br.com.fiap.tech.challenge.enterprise.enums.PaymentMethod;
 
@@ -11,5 +12,5 @@ public interface PaymentGateway {
 
     Optional<String> pay(Purchase purchase);
 
-    Optional<String> getPurchaseUUID(String paymentId);
+    Optional<MarketPaymentDTO> getPurchaseUUID(String paymentId);
 }
