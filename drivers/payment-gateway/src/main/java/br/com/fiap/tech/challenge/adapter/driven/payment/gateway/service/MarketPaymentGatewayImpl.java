@@ -1,5 +1,6 @@
 package br.com.fiap.tech.challenge.adapter.driven.payment.gateway.service;
 
+import br.com.fiap.tech.challenge.application.dto.MarketPaymentDTO;
 import br.com.fiap.tech.challenge.application.gateway.MarketPaymentGateway;
 import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
 import br.com.fiap.tech.challenge.enterprise.enums.PaymentMethod;
@@ -21,7 +22,7 @@ public class MarketPaymentGatewayImpl implements MarketPaymentGateway {
     }
 
     @Override
-    public Optional<String> getPurchaseUUID(String marketPaymentId) {
+    public Optional<MarketPaymentDTO> getPurchaseUUID(String marketPaymentId) {
         return current(PaymentMethod.PAID_MARKET).getPurchaseUUID(marketPaymentId);
     }
 

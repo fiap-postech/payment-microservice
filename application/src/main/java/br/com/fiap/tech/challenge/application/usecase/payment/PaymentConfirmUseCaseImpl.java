@@ -2,7 +2,6 @@ package br.com.fiap.tech.challenge.application.usecase.payment;
 
 import br.com.fiap.tech.challenge.application.dto.PaymentConfirmDTO;
 import br.com.fiap.tech.challenge.enterprise.entity.Payment;
-import br.com.fiap.tech.challenge.enterprise.enums.PaymentStatus;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -14,6 +13,6 @@ class PaymentConfirmUseCaseImpl implements PaymentConfirmUseCase {
     @Override
     public Payment confirm(PaymentConfirmDTO dto) {
         var payment = findPaymentByMarketPaymentIdUseCase.getPayment(dto.getData().getId());
-        return updatePaymentStatusUseCase.update(payment, PaymentStatus.PAID);
+        return updatePaymentStatusUseCase.update(payment, payment.status());
     }
 }
