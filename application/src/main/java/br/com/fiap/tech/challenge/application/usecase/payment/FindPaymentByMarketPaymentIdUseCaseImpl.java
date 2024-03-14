@@ -16,7 +16,8 @@ class FindPaymentByMarketPaymentIdUseCaseImpl implements FindPaymentByMarketPaym
 
     @Override
     public Payment getPayment(String marketPaymentId) {
-        var purchaseId = marketPaymentGateway.getPurchaseUUID(marketPaymentId).orElseThrow();
-        return paymentReaderGateway.readById(UUID.fromString(purchaseId));
+        var marketPaymentDTO = marketPaymentGateway.getPurchaseUUID(marketPaymentId).orElseThrow();
+        var payment = paymentReaderGateway.readById(UUID.fromString(marketPaymentDTO.getPurchaseUUID()));
+        return marketPaymentDTO.getStatusMarketPayment().equals("approved")? payment.paid() : payment.error();
     }
 }

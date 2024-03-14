@@ -3,6 +3,7 @@ package br.com.fiap.tech.challenge.adapter.driven.payment.gateway.service;
 import br.com.fiap.tech.challenge.adapter.driven.payment.gateway.client.MarketPaymentClient;
 import br.com.fiap.tech.challenge.adapter.driven.payment.gateway.request.CheckoutItem;
 import br.com.fiap.tech.challenge.adapter.driven.payment.gateway.request.PaymentCheckoutRequest;
+import br.com.fiap.tech.challenge.application.dto.MarketPaymentDTO;
 import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
 import br.com.fiap.tech.challenge.enterprise.enums.PaymentMethod;
 import br.com.fiap.tech.challenge.enterprise.valueobject.PurchaseItem;
@@ -48,12 +49,19 @@ public class PaidMarket implements PaymentGateway {
     }
 
     @Override
-    public Optional<String> getPurchaseUUID(String marketPaymentId) {
+    public Optional<MarketPaymentDTO> getPurchaseUUID(String marketPaymentId) {
         try {
             var response = current().getPayment(TOKEN, marketPaymentId);
 
             if (response.getStatusCode().is2xxSuccessful()) {
-                return Optional.of(requireNonNull(response.getBody()).getAdditionalInfo().purchaseId());
+                var paymentConfirmResponse = requireNonNull(response.getBody());
+
+                var dto = MarketPaymentDTO.builder()
+                        .purchaseUUID(paymentConfirmResponse.getAdditionalInfo().purchaseId())
+                        .statusMarketPayment(paymentConfirmResponse.getStatus())
+                        .build();
+
+                return Optional.of(dto);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
